@@ -6,6 +6,8 @@ import * as ActionTypes from "../../store/actions/actions";
 
 import './Servicios.scss';
 
+import Proyectos from './Proyectos/Proyectos';
+
 class Servicios extends Component {
     componentDidMount(){
         if(localStorage.getItem('id_token')){
@@ -26,15 +28,13 @@ class Servicios extends Component {
             let mainAreaStyle = {};
             if(this.props.windowFunctions.isMobile()){
                 mainAreaStyle = {
-                    width: '100%',
-                    backgroundColor: '#444',
+                    width: '100%'
                 }
             } else {
                 mainAreaStyle = {
                     width: `${this.props.windowFunctions.getWidth() - 300}px`,
                     position: 'absolute',
-                    left: '300px',
-                    backgroundColor: '#444'
+                    left: '300px'
                 }
             }
 
@@ -57,9 +57,10 @@ class Servicios extends Component {
                         <SideNavItem waves onClick={() => this.props.onLogout(this.props.history)}>Logout</SideNavItem>
                     </SideNav>
                     <div className='Servicios__Main-area' style={mainAreaStyle}>
-                        <nav>
+                        <nav className='Servicios__Barra'>
                             <img src="./images/logo-white.png" alt="Acromático Development"/>
                         </nav>
+                        <Proyectos />
                     </div>
                 </div>
             )

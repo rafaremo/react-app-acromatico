@@ -34,14 +34,22 @@ export default class Auth {
 
     isAuthenticated = () => {
         let expiresAt = localStorage.getItem("expires_at");
-        return new Date().getTime() < JSON.parse(expiresAt);
+        if(new Date().getTime() < JSON.parse(expiresAt)){
+            return true;
+        } else {
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("id_token");
+            localStorage.removeItem("expires_at");
+            return false;
+        }
+        
     };
 
     logout = (history) => {
         localStorage.removeItem("access_token");
         localStorage.removeItem("id_token");
         localStorage.removeItem("expires_at");
-        history.push({pathname: '/'})
+        history.push({pathname: '/'});
     };
 
     getProfile = () => {
